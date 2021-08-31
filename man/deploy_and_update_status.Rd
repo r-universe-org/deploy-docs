@@ -6,13 +6,13 @@
 \usage{
 deploy_and_update_status(
   gha_result = Sys.getenv("GHA_RESULT"),
-  gha_url = Sys.getenv("GHA_URL")
+  buildlog = Sys.getenv("BUILDLOG")
 )
 }
 \arguments{
 \item{gha_result}{result of pkgdown site}
 
-\item{gha_url}{link to build logs}
+\item{buildlog}{url to build logs}
 }
 \description{
 Push pkgdown site to docs.ropensci.org and try to set commit status.

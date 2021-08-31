@@ -4,11 +4,11 @@
 #'
 #' @export
 #' @param gha_result result of pkgdown site
-#' @param gha_url link to build logs
-deploy_and_update_status <- function(gha_result = Sys.getenv('GHA_RESULT'), gha_url = Sys.getenv('GHA_URL')){
+#' @param buildlog url to build logs
+deploy_and_update_status <- function(gha_result = Sys.getenv('GHA_RESULT'), buildlog = Sys.getenv('BUILDLOG')){
   if(grepl("suc", gha_result)){
     cat("Docs build was successful. Deploying to https://docs.ropensci.org")
-    deploy_site('ropensci', buildlog = gha_url)
+    deploy_site('ropensci', buildlog = buildlog)
   }
   #gh_app_set_commit_status
 }
