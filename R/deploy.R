@@ -63,30 +63,3 @@ commit_for_ropensci <- function(message, author){
   commit_sig <- gert::git_signature(name = 'rOpenSci', email = 'info@ropensci.org')
   gert::git_commit(message = message, author = author_sig, committer = commit_sig)
 }
-
-
-#' Set Commit Status
-#'
-#' Sets the commit status on a commit from a GitHub App.
-#' Requires the `GH_APP_KEY` environment variable.
-#'
-#' @param repo full repo name for example "ropensci/magick"
-#' @param sha hash of the commit to update
-#' @param url link to the build logs
-#' @param pkg name of the R package
-#' @param state string with result of rendering pkgdown
-gh_app_set_commit_status <- function(repo, sha, url, pkg, state){
-  if(is.na(Sys.getenv('GH_APP_KEY', NA)))
-    stop("GH_APP_KEY missing")
-  repo <- sub("https?://github.com/", "", repo)
-  repo <- sub("\\.git$", "", repo)
-  token <- ghapps::gh_app_token(app_id = '87942', repo)
-  endpoint <- sprintf('/repos/%s/statuses/%s', repo, sha)
-  context <- sprintf('ropensci/docs')
-  description <- 'Render pkgdown documentation'
-  if(state == 'success'){
-    url <- sprintf('https://docs.ropensci.org/', pkg)
-  }
-  gh::gh(endpoint, .method = 'POST', .token = token, state = state,
-         target_url = url, context = context, description = description)
-}
