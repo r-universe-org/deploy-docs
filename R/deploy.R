@@ -23,8 +23,8 @@ deploy_site <- function(deploy_org, buildlog, docsfile = 'docs.zip'){
 
   # Get metadata
   info <- jsonlite::read_json('info.json')
-  commit_url <- paste0(info$remote, "/commit/", substring(info$commit$commit,1,7))
-  commit_message <- sprintf('Render from %s (%s...)\nBuild log: %s\n', commit_url,
+  commit_url <- paste0(info$repo, "/commit/", substring(info$commit$commit,1,7))
+  commit_message <- sprintf('Render from %s (%s...)\nBuild: %s\n', commit_url,
                             substring(trimws(info$commit$message), 1, 25), buildlog)
   pkg <- info$pkg
   deploy_repo <- paste0(deploy_org, "/", pkg)
