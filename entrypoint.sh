@@ -1,4 +1,4 @@
 #!/bin/bash -l
 set -e
-Rscript -e "deploydocs::deploy_and_update_status()"
+Rscript -e "deploydocs::deploy_site()"
 echo "Action complete!"

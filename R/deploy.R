@@ -1,18 +1,12 @@
 #' Deploy docs
 #'
-#' Push pkgdown site to docs.ropensci.org and try to set commit status.
+#' Push pkgdown site from zip file to docs.ropensci.org
 #'
 #' @export
-#' @param gha_result result of pkgdown site
+#' @param deploy_org github organization to host docs
 #' @param buildlog url to build logs
-deploy_and_update_status <- function(gha_result = Sys.getenv('GHA_RESULT'), buildlog = Sys.getenv('BUILDLOG')){
-  if(grepl("suc", gha_result)){
-    cat("Docs build was successful. Deploying to https://docs.ropensci.org")
-    deploy_site('ropensci-docs', buildlog = buildlog)
-  }
-}
-
-deploy_site <- function(deploy_org, buildlog, docsfile = 'docs.zip'){
+#' @param docsfile name of zip file containing site do deploy
+deploy_site <- function(deploy_org = 'ropensci-docs', buildlog = Sys.getenv('BUILDLOG'), docsfile = 'docs.zip'){
   # Extract docs zip
   docsfile <- normalizePath(docsfile, mustWork = TRUE)
   dir.create('deploy')
