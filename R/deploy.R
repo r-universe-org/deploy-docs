@@ -19,6 +19,7 @@ deploy_site <- function(deploy_org, buildlog, docsfile = 'docs.zip'){
   dir.create('deploy')
   setwd('deploy')
   utils::unzip(docsfile)
+  setwd(list.files())
 
   # Get metadata
   info <- jsonlite::read_json('info.json')
