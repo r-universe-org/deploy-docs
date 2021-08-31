@@ -8,12 +8,12 @@
 deploy_and_update_status <- function(gha_result = Sys.getenv('GHA_RESULT'), gha_url = Sys.getenv('GHA_URL')){
   if(grepl("suc", gha_result)){
     cat("Docs build was successful. Deploying to https://docs.ropensci.org")
-    deploy_site('ropensci')
+    deploy_site('ropensci', buildlog = gha_url)
   }
   #gh_app_set_commit_status
 }
 
-deploy_site <- function(deploy_org, docsfile = 'docs-website/docs.zip'){
+deploy_site <- function(deploy_org, buildlog, docsfile = 'docs-website/docs.zip'){
   # Extract docs zip
   dir.create('deploy')
   setwd('deploy')
@@ -22,8 +22,8 @@ deploy_site <- function(deploy_org, docsfile = 'docs-website/docs.zip'){
   # Get metadata
   info <- jsonlite::read_json('info.json')
   commit_url <- paste0(info$remote, "/commit/", substring(info$commit$commit,1,7))
-  commit_message <- sprintf('Render from %s (%s...)', commit_url,
-                            substring(trimws(info$commit$message), 1, 25))
+  commit_message <- sprintf('Render from %s (%s...)\nBuild log: %s\n', commit_url,
+                            substring(trimws(info$commit$message), 1, 25), buildlog)
   pkg <- info$pkg
   deploy_repo <- paste0(deploy_org, "ropensci/", pkg)
   deploy_remote <- paste0('https://github.com/', deploy_repo)
