@@ -12,6 +12,4 @@ RoxygenNote: 7.1.1
 Imports: 
     gert,
     gh,
-    ghapps,
     jsonlite
-Remotes: jeroen/ghapps

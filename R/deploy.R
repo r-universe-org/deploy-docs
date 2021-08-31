@@ -10,7 +10,6 @@ deploy_and_update_status <- function(gha_result = Sys.getenv('GHA_RESULT'), buil
     cat("Docs build was successful. Deploying to https://docs.ropensci.org")
     deploy_site('ropensci-docs', buildlog = buildlog)
   }
-  #gh_app_set_commit_status
 }
 
 deploy_site <- function(deploy_org, buildlog, docsfile = 'docs.zip'){
