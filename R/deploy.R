@@ -27,7 +27,7 @@ deploy_site <- function(deploy_org, buildlog, docsfile = 'docs-website/docs.zip'
   commit_message <- sprintf('Render from %s (%s...)\nBuild log: %s\n', commit_url,
                             substring(trimws(info$commit$message), 1, 25), buildlog)
   pkg <- info$pkg
-  deploy_repo <- paste0(deploy_org, "ropensci/", pkg)
+  deploy_repo <- paste0(deploy_org, "/", pkg)
   deploy_remote <- paste0('https://github.com/', deploy_repo)
 
   # Create the repo
