@@ -4,17 +4,14 @@ Title: Deploy to docs server
 Version: 1.0
 Author: Jeroen Ooms
 Maintainer: Jeroen Ooms <jeroen@berkeley.edu>
-Description: Deploy docs to docs server
+Description: Deploy pkgdown site to docs server.
 License: Apache License 2.0
 Encoding: UTF-8
 LazyData: true
 RoxygenNote: 7.1.1
 Imports: 
-  commonmark,
-  gert,
-  jsonlite,
-  pkgdown,
-  remotes,
-  rotemplate,
-  xml2,
-  yaml
+    gert,
+    gh,
+    ghapps,
+    jsonlite
+Remotes: jeroen/ghapps

@@ -6,3 +6,4 @@
 ^entrypoint.sh$
 ^Renviron$
 ^Rprofile$
+^.github$
