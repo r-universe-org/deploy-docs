@@ -1,0 +1,5 @@
+name: 'Deploy docs'
+description: 'Deploy to rOpenSci docs server'
+runs:
+  using: 'docker'
+  image: 'docker://runiverse/deploy-docs'

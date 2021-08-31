@@ -1,0 +1,8 @@
+^.*\.Rproj$
+^\.Rproj\.user$
+^LICENSE\.md$
+^action.yml$
+^Dockerfile$
+^entrypoint.sh$
+^Renviron$
+^Rprofile$
