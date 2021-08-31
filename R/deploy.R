@@ -13,13 +13,8 @@ deploy_and_update_status <- function(gha_result = Sys.getenv('GHA_RESULT'), buil
   #gh_app_set_commit_status
 }
 
-deploy_site <- function(deploy_org, buildlog, docsfile = 'docs-website/docs.zip'){
+deploy_site <- function(deploy_org, buildlog, docsfile = 'docs.zip'){
   # Extract docs zip
-  print("DEBUG")
-  print(getwd())
-  print(list.files(recursive = T))
-  print("UP:")
-  print(list.files('..'))
   docsfile <- normalizePath(docsfile, mustWork = TRUE)
   dir.create('deploy')
   setwd('deploy')
