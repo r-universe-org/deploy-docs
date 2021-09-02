@@ -31,11 +31,11 @@ deploy_site <- function(deploy_org = 'ropensci-docs', buildlog = Sys.getenv('BUI
   gert::git_branch_create("gh-pages", checkout = TRUE)
 
   # Check if repo exists.
-  # This should no longer be needed, we create repos now in sync_ropensci_docs
-  tryCatch(gh::gh(paste0("/repos/", deploy_repo)), http_error_404 = function(e){
+  print(tryCatch(gh::gh(paste0("/repos/", deploy_repo)), http_error_404 = function(e){
     cat(sprintf("Repo does not yet exist: %s\n", deploy_repo))
-    create_new_docs_repo(pkg)
-  })
+    print(create_new_docs_repo(pkg))
+    Sys.sleep(10)
+  }))
   cat(sprintf("Pushing to %s\n", deploy_remote), file = stderr())
   gert::git_push('origin', force = TRUE, verbose = TRUE)
 }
