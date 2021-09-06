@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Directory Index</title>
+
+<style>
+body {
+	font-family: monospace; font-size: 14px;
+}
+ul {
+	list-style-type: none;
+}
+.cc-revoke {
+	display: none !important;
+}
+</style>
+
+</head>
+
+<body>
+<h1>rOpenSci docs server</h1>
+
+<p>This server hosts pkgdown documentation for all rOpenSci packages. The sites are automatically generated and deployed through <a href="https://ropensci.r-universe.dev">r-universe</a>. See this <a href="https://ropensci.org/blog/2021/09/03/runiverse-docs/">technote</a> for more information.</p>
+
+<hr>
+
+<ul id="repolist">
+INSERT_REPO_LIST
+</ul>
+
+<script src="octokit-rest.min.js"></script>
+<script src="listrepos.js"></script>
+
+<!-- Matomo -->
+<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/cookieconsent@3/build/cookieconsent.min.css" />
+<script src="https://cdn.jsdelivr.net/npm/cookieconsent@3/build/cookieconsent.min.js" data-cfasync="false"></script>
+<script src="https://ropensci.org/scripts/matomo.js"></script>
+<noscript><p><img src="https://ropensci.matomo.cloud/matomo.php?idsite=1&amp;rec=1" style="border:0;" alt="" /></p></noscript>
+<!-- End Matomo Code -->
+
+</body>
+</html>
