@@ -2,6 +2,7 @@
 #'
 #' @export
 update_sitemap <- function(){
+  cat("Updating index.html and sitemap.xml at https://docs.ropensci.org\n")
   tmpdir <- tempfile()
   repo <- gert::git_clone('https://github.com/ropensci-docs/ropensci-docs.github.io', tmpdir)
   generate_sitemap(tmpdir)
