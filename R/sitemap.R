@@ -8,7 +8,7 @@ update_sitemap <- function(){
   generate_sitemap(tmpdir)
   gert::git_add(c('index.html', 'sitemap.xml'), repo = repo)
   if(any(gert::git_status(repo = repo)$staged)){
-    gert::git_commit(sprintf("Update sitemap (%s)", Sys.Date()), repo = repo)
+    gert::git_commit(sprintf("Update sitemap (%s)", Sys.Date()), author = ropensci_sig(), repo = repo)
     gert::git_push(repo = repo)
   } else {
     message("No changes in sitemap")

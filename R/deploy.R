@@ -53,6 +53,9 @@ commit_for_ropensci <- function(message, author){
   author_name <- sub('^(.*)<(.*)>$', '\\1', author)
   author_email <- sub('^(.*)<(.*)>$', '\\2', author)
   author_sig <- gert::git_signature(name = author_name, email = author_email)
-  commit_sig <- gert::git_signature(name = 'rOpenSci', email = 'info@ropensci.org')
-  gert::git_commit(message = message, author = author_sig, committer = commit_sig)
+  gert::git_commit(message = message, author = author_sig, committer = ropensci_sig())
+}
+
+ropensci_sig <- function(){
+  gert::git_signature(name = 'rOpenSci', email = 'info@ropensci.org')
 }
