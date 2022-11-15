@@ -57,5 +57,6 @@ commit_for_ropensci <- function(message, author){
 }
 
 ropensci_sig <- function(){
-  gert::git_signature(name = 'rOpenSci', email = 'info@ropensci.org')
+  #gert::git_signature(name = 'rOpenSci', email = 'info@ropensci.org')
+  gert::git_signature(name = 'r-universe[bot]', email = '74155986+r-universe[bot]@users.noreply.github.com')
 }
