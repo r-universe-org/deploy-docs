@@ -22,10 +22,10 @@ generate_sitemap <- function(path){
   sites <- Filter(function(x){!(x %in% skiplist)}, sites)
 
   # Generate sitemap.xml
-  body <- sprintf("  <url>\n    <loc>https://docs.ropensci.org/%s/</loc>\n  </url>", sites)
+  body <- sprintf("  <sitemap>\n    <loc>https://docs.ropensci.org/%s/sitemap.xml</loc>\n  </sitemap>", sites)
   sitemap <- paste(c('<?xml version="1.0" encoding="UTF-8"?>',
-    '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">',
-    body, '</urlset>'), collapse = '\n')
+    '<sitemapindex xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">',
+    body, '</sitemapindex>'), collapse = '\n')
   writeLines(sitemap, file.path(path, 'sitemap.xml'))
 
   # Generate index.html
