@@ -18,7 +18,7 @@ deploy_site <- function(deploy_org = 'ropensci-docs', buildlog = Sys.getenv('BUI
   info <- jsonlite::read_json('info.json')
   commit_url <- paste0(info$repo, "/commit/", substring(info$commit$commit,1,7))
   commit_message <- sprintf('Render from %s (%s...)\nBuild: %s\n', commit_url,
-                            substring(trimws(info$commit$message), 1, 25), buildlog)
+                            substring(gsub('@', '', trimws(info$commit$message)), 1, 25), buildlog)
   pkg <- info$pkg
   deploy_repo <- paste0(deploy_org, "/", pkg)
   deploy_remote <- paste0('https://github.com/', deploy_repo)
