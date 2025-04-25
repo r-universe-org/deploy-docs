@@ -8,6 +8,7 @@
 #' @param buildlog url to build logs
 deploy_site <- function(path = 'docs-website', deploy_org = 'ropensci-docs', buildlog = Sys.getenv('BUILDLOG')){
   setwd(path)
+
   info <- jsonlite::read_json('info.json')
   commit_url <- paste0(info$repo, "/commit/", substring(info$commit$commit,1,7))
   commit_message <- sprintf('Render from %s (%s...)\nBuild: %s\n', commit_url,
@@ -17,6 +18,7 @@ deploy_site <- function(path = 'docs-website', deploy_org = 'ropensci-docs', bui
   deploy_remote <- paste0('https://github.com/', deploy_repo)
 
   # Create the repo
+  gert::git_config_global_set('safe.directory', '*')
   gert::git_init()
   gert::git_add('.')
   commit_for_ropensci(commit_message, info$commit$author)
