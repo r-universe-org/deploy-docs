@@ -5,17 +5,17 @@
 \title{Deploy docs}
 \usage{
 deploy_site(
+  path = "docs-website",
   deploy_org = "ropensci-docs",
-  buildlog = Sys.getenv("BUILDLOG"),
-  docsfile = "docs.zip"
+  buildlog = Sys.getenv("BUILDLOG")
 )
 }
 \arguments{
+\item{path}{directory containing the website to deploy}
+
 \item{deploy_org}{github organization to host docs}
 
 \item{buildlog}{url to build logs}
-
-\item{docsfile}{name of zip file containing site do deploy}
 }
 \description{
 Push pkgdown site from zip file to docs.ropensci.org

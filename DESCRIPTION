@@ -1,14 +1,14 @@
 Package: deploydocs
 Type: Package
 Title: Deploy to docs server
-Version: 1.0
+Version: 2.0.0
 Author: Jeroen Ooms
 Maintainer: Jeroen Ooms <jeroen@berkeley.edu>
 Description: Deploy pkgdown site to docs server.
 License: Apache License 2.0
 Encoding: UTF-8
 LazyData: true
-RoxygenNote: 7.1.1
+RoxygenNote: 7.3.2
 Imports: 
     gert,
     gh,

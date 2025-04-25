@@ -3,18 +3,11 @@
 #' Push pkgdown site from zip file to docs.ropensci.org
 #'
 #' @export
+#' @param path directory containing the website to deploy
 #' @param deploy_org github organization to host docs
 #' @param buildlog url to build logs
-#' @param docsfile name of zip file containing site do deploy
-deploy_site <- function(deploy_org = 'ropensci-docs', buildlog = Sys.getenv('BUILDLOG'), docsfile = 'docs.zip'){
-  # Extract docs zip
-  docsfile <- normalizePath(docsfile, mustWork = TRUE)
-  dir.create('deploy')
-  setwd('deploy')
-  utils::unzip(docsfile)
-  setwd(list.files())
-
-  # Get metadata
+deploy_site <- function(path = 'docs-website', deploy_org = 'ropensci-docs', buildlog = Sys.getenv('BUILDLOG')){
+  setwd(path)
   info <- jsonlite::read_json('info.json')
   commit_url <- paste0(info$repo, "/commit/", substring(info$commit$commit,1,7))
   commit_message <- sprintf('Render from %s (%s...)\nBuild: %s\n', commit_url,
