@@ -34,9 +34,15 @@ deploy_site <- function(path = 'docs-website', deploy_org = 'ropensci-docs', bui
   print(repodata)
 
   # Do not redeploy old builds
-  if(length(repodata$pushed_at) && length(info$time) && info$time < repodata$pushed_at){
-    message("Build seemes older than current site. Skipping deployment.")
-    return()
+  if(length(repodata$pushed_at) && length(info$time)){
+    message("Old site date: ", repodata$pushed_at)
+    message("New build date: ", info$time)
+    if(repodata$pushed_at > info$time){
+      message("This build is older than existing website. Skipping deployment.")
+      return()
+    } else {
+      message("Proceed with deploy")
+    }
   }
 
   cat(sprintf("Pushing to %s\n", deploy_remote), file = stderr())
