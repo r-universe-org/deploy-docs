@@ -26,11 +26,19 @@ deploy_site <- function(path = 'docs-website', deploy_org = 'ropensci-docs', bui
   gert::git_branch_create("gh-pages", checkout = TRUE)
 
   # Check if repo exists.
-  print(tryCatch(gh::gh(paste0("/repos/", deploy_repo)), http_error_404 = function(e){
+  repodata <- tryCatch(gh::gh(paste0("/repos/", deploy_repo)), http_error_404 = function(e){
     cat(sprintf("Repo does not yet exist: %s\n", deploy_repo))
     print(create_new_docs_repo(pkg))
     Sys.sleep(10)
-  }))
+  })
+  print(repodata)
+
+  # Do not redeploy old builds
+  if(length(repodata$pushed_at) && length(info$time) && info$time < repodata$pushed_at){
+    message("Build seemes older than current site. Skipping deployment.")
+    return()
+  }
+
   cat(sprintf("Pushing to %s\n", deploy_remote), file = stderr())
   gert::git_push('origin', force = TRUE, verbose = TRUE)
 }
