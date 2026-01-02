@@ -31,7 +31,6 @@ deploy_site <- function(path = 'docs-website', deploy_org = 'ropensci-docs', bui
     print(create_new_docs_repo(pkg))
     Sys.sleep(10)
   })
-  print(repodata)
 
   # Do not redeploy old builds
   if(length(repodata$pushed_at) && length(info$time)){
